@@ -4,7 +4,7 @@ use Faker\Factory;
 
 class Generator
 {
-    const EMAIL_DOMAIN = '';
+    const EMAIL_DOMAIN = 'example.org';
 
     protected $faker;
 
@@ -17,10 +17,12 @@ class Generator
 
     public function generateOne(string $basename = null)
     {
-        $account = (new Account(self::EMAIL_DOMAIN))
-            ->setUsername($this->faker->unique()->bothify($basename ?? $this->username()))
-            ->setPassword($this->password())
-            ->setBirthday($this->birthday());
+        $account = new Account(self::EMAIL_DOMAIN);
+        $account->username = $this->faker->unique()->bothify($basename ?? $this->username());
+        $account->password = $this->password();
+        $account->birthday = $this->birthday();
+
+        $account->save();
 
         return $account;
     }

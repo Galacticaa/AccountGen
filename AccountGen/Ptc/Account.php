@@ -1,56 +1,40 @@
 <?php namespace AccountGen\Ptc;
 
-class Account
+use Illuminate\Database\Eloquent\Model;
+
+class Account extends Model
 {
     protected $domain;
 
-    protected $username;
+    protected $primaryKey = 'username';
 
-    protected $password;
-
-    protected $email;
-
-    protected $birthday;
-
-    protected $country = 'GB';
+    public $incrementing = false;
 
     public function __construct($domain = null)
     {
+        parent::__construct();
+
         $this->domain = $domain;
 
-        return $this;
-    }
-
-    public function setUsername($username)
-    {
-        $this->username = $username;
-        $this->email = $username.'@'.$this->domain;
+        $this->attributes['country'] = 'GB';
 
         return $this;
     }
 
-    public function setPassword($password)
+    public function setUsernameAttribute($username)
     {
-        $this->password = $password;
-
-        return $this;
-    }
-
-    public function setBirthday($dob)
-    {
-        $this->birthday = $dob;
-
-        return $this;
+        $this->attributes['username'] = $username;
+        $this->attributes['email'] = $username.'@'.$this->domain;
     }
 
     public function __toString()
     {
         return implode(';', [
-            $this->username,
-            $this->email,
-            $this->password,
-            $this->birthday,
-            $this->country
+            $this->attributes['username'],
+            $this->attributes['email'],
+            $this->attributes['password'],
+            $this->attributes['birthday'],
+            $this->attributes['country']
         ]);
     }
 }

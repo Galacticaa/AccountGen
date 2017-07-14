@@ -1,6 +1,8 @@
 {
     "require": {
-        "fzaninotto/Faker": "^1.6"
+        "fzaninotto/Faker": "^1.6",
+        "illuminate/database": "^5.4",
+        "robmorgan/phinx": "^0.8.1"
     },
     "autoload": {
         "psr-4": {"AccountGen\\": "AccountGen/"}
