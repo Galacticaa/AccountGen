@@ -1,11 +1,10 @@
 <?php namespace AccountGen\Ptc;
 
+use Exception;
 use Faker\Factory;
 
 class Generator
 {
-    const EMAIL_DOMAIN = 'example.org';
-
     protected $faker;
 
     protected $symbols = ['?', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', ']', '<', '>'];
@@ -17,7 +16,7 @@ class Generator
 
     public function generateOne(string $basename = null)
     {
-        $account = new Account(self::EMAIL_DOMAIN);
+        $account = new Account($this->randomDomain());
         $account->username = $this->faker->unique()->bothify($basename ?? $this->username());
         $account->password = $this->password();
         $account->birthday = $this->birthday();
@@ -37,6 +36,17 @@ class Generator
         }
 
         return $accounts;
+    }
+
+    protected function randomDomain()
+    {
+        $domains = @include 'config/domains.php';
+
+        if ($domains === false || count($domains) === 0) {
+            throw new Exception("No domains defined in config/domains.php");
+        }
+
+        return count($domains) === 1 ? $domains[0] : $domains[array_rand($domains)];
     }
 
     public function username()
