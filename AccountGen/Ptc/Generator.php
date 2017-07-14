@@ -1,9 +1,8 @@
-#!/bin/php
-<?php require 'vendor/autoload.php';
+<?php namespace AccountGen\Ptc;
 
 use Faker\Factory;
 
-class Account
+class Generator
 {
     const EMAIL_DOMAIN = '';
 
@@ -18,12 +17,12 @@ class Account
 
     public function generateOne(string $basename = null)
     {
-        $username = $this->faker->unique()->bothify($basename ?? $this->username());
-        $password = $this->password();
-        $birthday = $this->birthday();
-        $email = $username.'@'.self::EMAIL_DOMAIN;
+        $account = (new Account(self::EMAIL_DOMAIN))
+            ->setUsername($this->faker->unique()->bothify($basename ?? $this->username()))
+            ->setPassword($this->password())
+            ->setBirthday($this->birthday());
 
-        return implode(';', [$username, $email, $password, $birthday, 'GB']);
+        return $account;
     }
 
     public function generateBatch(int $count = 20, string $basename = null)
@@ -71,21 +70,3 @@ class Account
         return $this->faker->dateTimeBetween('-40 years', '-18 years')->format('Y-m-d');
     }
 }
-
-$options = getopt('u::m::n::', ['unique::', 'multiples::username::']);
-
-$unique = $options['unique'] ?? $options['u'] ?? 1;
-$multiples = $options['multiples'] ?? $options['m'] ?? 15;
-$custom = $options['username'] ?? $options['n'] ?? null;
-//'someUsername##?#';
-
-echo '#username;email;password;dob;country'.PHP_EOL;
-
-for ($i = 0; $i < $unique; $i++) {
-    $accounts = (new Account)->generateBatch($multiples, $i === 0 ? $custom : null);
-
-    foreach ($accounts as $account) {
-        echo $account.PHP_EOL;
-    }
-}
-

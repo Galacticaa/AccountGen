@@ -1,0 +1,25 @@
+#!/bin/php
+<?php require 'vendor/autoload.php';
+
+use AccountGen\Ptc\Generator;
+
+$options = getopt('u::m::n::', ['unique::', 'multiples::username::']);
+
+$unique = $options['unique'] ?? $options['u'] ?? 1;
+$multiples = $options['multiples'] ?? $options['m'] ?? 15;
+$custom = $options['username'] ?? $options['n'] ?? null;
+//'someUsername##?#';
+
+echo '#username;email;password;dob;country'.PHP_EOL;
+
+$factory = new Generator;
+
+for ($i = 0; $i < $unique; $i++) {
+    $accounts = $factory->generateBatch($multiples, $i === 0 ? $custom : null);
+
+    foreach ($accounts as $account) {
+        echo $account.PHP_EOL;
+    }
+}
+
+# vim: syntax=php
