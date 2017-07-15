@@ -2,3 +2,6 @@ vendor/
 config/database.php
 config/domains.php
 config/instances.php
+Kinan/config.properties
+Kinan/*.csv
+Kinan/*.log
