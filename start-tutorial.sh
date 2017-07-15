@@ -29,6 +29,11 @@ else
 fi
 
 echo
+echo "Checking tutorial status of previous run..."
+grep 'successfully spun' $ROCKET_PATH/tutorial.log | sed -e "s/\(.\)\+Account \([a-zA-Z0-9]\+\) \(.\)\+/\2/g" > /tmp/complete.csv
+php checktut.php
+
+echo
 echo "Grabbing new tutorial accounts..."
 php tutorial.php
 
