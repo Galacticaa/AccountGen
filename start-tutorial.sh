@@ -37,7 +37,7 @@ echo
 echo "Grabbing new tutorial accounts..."
 php tutorial.php
 
-if [ $@ -ne 0 ]; then
+if [ $? -ne 0 ]; then
     echo "All accounts have completed tutorial!"
 else
     echo "Starting RocketMap to complete tutorials..."
@@ -45,5 +45,5 @@ else
     echo
     cd "$ROCKET_PATH"
 
-    nohup ./runserver.py -cf config/tutorial.ini &
+    tmux new-session -s RMAPTUTORIAL -d ./runserver.py -cf config/tutorial.ini
 fi

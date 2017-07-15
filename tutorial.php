@@ -1,6 +1,7 @@
 <?php require 'vendor/autoload.php';
 
 use AccountGen\Ptc\Account;
+use Illuminate\Database\Capsule\Manager as Capsule;
 
 $config = include 'config/tutorial.php';
 
@@ -15,14 +16,14 @@ $capsule->bootEloquent();
 $path = trim($config['map_path'], '/').'/'.trim($config['map_accounts_dir'], '/');
 
 if (!($file = fopen($path.'/tutorial.csv', 'w'))) {
-    echo "Failed to open accounts file for writing. Aborting.";
+    echo "Failed to open accounts file for writing. Aborting.".PHP_EOL;
     exit;
 }
 
 $accounts = Account::whereNull('completed_at')->get();
 
 if ($accounts->isEmpty()) {
-    echo "No accounts found.";
+    echo "No accounts found.".PHP_EOL;
     exit(1);
 }
 

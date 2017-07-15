@@ -40,7 +40,7 @@ class Account extends Model
 
     public function formatForRocketMap()
     {
-        return implode(';', [
+        return implode(',', [
             'ptc',
             $this->attributes['username'],
             $this->attributes['password'],
