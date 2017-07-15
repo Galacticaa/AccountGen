@@ -2,6 +2,7 @@ vendor/
 config/database.php
 config/domains.php
 config/instances.php
+config/tutorial.php
 Kinan/config.properties
 Kinan/*.csv
 Kinan/*.log

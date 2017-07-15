@@ -27,7 +27,7 @@ class Account extends Model
         $this->attributes['email'] = $username.'@'.$this->domain;
     }
 
-    public function __toString()
+    public function formatForKinan()
     {
         return implode(';', [
             $this->attributes['username'],
@@ -35,6 +35,15 @@ class Account extends Model
             $this->attributes['password'],
             $this->attributes['birthday'],
             $this->attributes['country']
+        ]);
+    }
+
+    public function formatForRocketMap()
+    {
+        return implode(';', [
+            'ptc',
+            $this->attributes['username'],
+            $this->attributes['password'],
         ]);
     }
 }
