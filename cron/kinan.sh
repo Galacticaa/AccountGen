@@ -27,7 +27,7 @@ if [ -z "$corePid" ]; then
 
     cd Kinan
     echo "$accounts" > accounts.csv
-    tmux new-session -s KinanCore-d java -jar KinanCity-core-1.3.2-SNAPSHOT.jar -a accounts.csv
+    tmux new-session -s KinanCore -d java -jar KinanCity-core-1.3.2-SNAPSHOT.jar -a accounts.csv
 else
     echo "Kinan is busy!"
 fi

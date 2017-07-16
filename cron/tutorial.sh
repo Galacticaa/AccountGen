@@ -15,7 +15,7 @@ if [ -z "$tutPid" ]; then
     echo "Tutorial not running."
 else
     echo "Tutorial runner found! Terminating process..."
-    kill -15 $tutPid
+    tmux kill-session -t RMAPTUTORIAL
 
     sleep 5s
     findTutorialPid
@@ -23,8 +23,7 @@ else
     if [ -z "$tutPid" ]; then
         echo "Successfully killed tutorial process."
     else
-        echo "Tutorial process still running! Sending SIGKILL..."
-        kill -9 $tutPid
+        echo "Tutorial process still running! Oh well."
     fi
 fi
 

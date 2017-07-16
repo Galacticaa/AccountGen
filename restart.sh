@@ -11,7 +11,7 @@ if [ -z "$instancePid" ]; then
     echo "Instance $2 is not running."
 else
     echo -n "Stopping instance $2..."
-    kill -15 $instancePid
+    tmux kill-session -t "scan_$2"
 
     sleep 2s
     findInstancePid
@@ -19,8 +19,7 @@ else
     if [ -z "$instancePid" ]; then
         echo "Done!"
     else
-        echo "It's being reluctant. Sending SIGKILL!"
-        kill -9 $instancePid
+        echo "Failed... Oh well."
     fi
 fi
 
