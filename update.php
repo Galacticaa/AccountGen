@@ -50,8 +50,8 @@ foreach ($instances as $instance) {
         continue;
     }
 
-    $rmap_path = trim($config['map_path'], '/');
-    $acct_path = $rmap_path.'/'.trim($config['map_accounts_dir'], '/');
+    $rmap_path = rtrim($config['map_path'], '/');
+    $acct_path = $rmap_path.'/'.rtrim($config['map_accounts_dir'], '/');
     $file = strtolower($instance->name).'.csv';
     echo "Writing accounts to {$acct_path}/{$file}...".PHP_EOL.PHP_EOL;
 

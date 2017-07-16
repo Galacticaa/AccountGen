@@ -13,7 +13,7 @@ $capsule->addConnection($db);
 $capsule->setAsGlobal();
 $capsule->bootEloquent();
 
-$path = trim($config['map_path'], '/').'/'.trim($config['map_accounts_dir'], '/');
+$path = rtrim($config['map_path'], '/').'/'.rtrim($config['map_accounts_dir'], '/');
 
 $logPath = '/tmp/complete.csv';
 $tutPath = $path.'/tutorial.csv';
