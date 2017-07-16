@@ -21,6 +21,11 @@ class Account extends Model
         return $this;
     }
 
+    public function instance()
+    {
+        return $this->belongsTo('AccountGen\Instance', 'instance', 'name');
+    }
+
     public function setUsernameAttribute($username)
     {
         $this->attributes['username'] = $username;

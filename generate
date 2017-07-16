@@ -51,7 +51,7 @@ if ($instance !== null) {
 
 echo '#username;email;password;dob;country'.PHP_EOL;
 
-$factory = new Generator;
+$factory = new Generator($instance);
 
 for ($i = 0; $i < $unique; $i++) {
     $count = (($i + 1) * $multiples) < $max

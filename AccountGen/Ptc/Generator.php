@@ -7,11 +7,15 @@ class Generator
 {
     protected $faker;
 
+    protected $instance;
+
     protected $symbols = ['?', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', ']', '<', '>'];
 
-    public function __construct()
+    public function __construct($instance = null)
     {
         $this->faker = Factory::create();
+
+        $this->instance = $instance;
     }
 
     public function generateOne(string $basename = null)
@@ -20,6 +24,7 @@ class Generator
         $account->username = $this->faker->unique()->bothify($basename ?? $this->username());
         $account->password = $this->password();
         $account->birthday = $this->birthday();
+        $account->instance = $this->instance;
 
         $account->save();
 
