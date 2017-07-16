@@ -20,7 +20,9 @@ if (!($file = fopen($path.'/tutorial.csv', 'w'))) {
     exit;
 }
 
-$accounts = Account::whereNull('completed_at')->get();
+$accounts = Account::whereNotNull('registered_at')
+                   ->whereNotNull('activated_at')
+                   ->whereNull('completed_at')->get();
 
 if ($accounts->isEmpty()) {
     echo "No accounts found.".PHP_EOL;
