@@ -2,7 +2,8 @@
     "require": {
         "fzaninotto/Faker": "^1.6",
         "illuminate/database": "^5.4",
-        "robmorgan/phinx": "^0.8.1"
+        "robmorgan/phinx": "^0.8.1",
+        "symfony/console": "^3.3"
     },
     "autoload": {
         "psr-4": {"AccountGen\\": "src/"}

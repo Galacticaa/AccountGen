@@ -16,7 +16,7 @@ fi
 corePid=$(ps axf | grep "KinanCity-core" | grep -v grep | awk '{ print $1 }')
 
 if [ -z "$corePid" ]; then
-    accounts=$(php get-incomplete.php)
+    accounts=$(php pogomap accounts:list)
 
     if [ $? -ne 0 ]; then
         echo "All accounts have been created!"

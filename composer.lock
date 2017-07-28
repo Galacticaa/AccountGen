@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "230b2eafa223d803cd4e0fed50606972",
+    "content-hash": "465e225510c4e90b03be5d0996bc01a7",
     "packages": [
         {
             "name": "doctrine/inflector",
@@ -601,7 +601,7 @@
         },
         {
             "name": "symfony/console",
-            "version": "v3.3.4",
+            "version": "v3.3.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",

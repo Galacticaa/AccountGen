@@ -1,0 +1,20 @@
+#!/usr/bin/php
+<?php require 'vendor/autoload.php';
+
+use AccountGen\Accounts\ListCommand;
+use Illuminate\Database\Capsule\Manager as Capsule;
+use Symfony\Component\Console\Application;
+
+$db = include 'config/database.php';
+$db['driver'] = 'mysql';
+
+$capsule = (new Capsule);
+$capsule->addConnection($db);
+$capsule->setAsGlobal();
+$capsule->bootEloquent();
+
+$app = new Application();
+$app->add(new ListCommand);
+$app->run();
+
+# vim: syntax=php
