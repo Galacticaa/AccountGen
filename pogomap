@@ -1,6 +1,7 @@
 #!/usr/bin/php
 <?php require 'vendor/autoload.php';
 
+use AccountGen\Accounts\GenerateCommand;
 use AccountGen\Accounts\ListCommand;
 use Illuminate\Database\Capsule\Manager as Capsule;
 use Symfony\Component\Console\Application;
@@ -14,6 +15,7 @@ $capsule->setAsGlobal();
 $capsule->bootEloquent();
 
 $app = new Application();
+$app->add(new GenerateCommand);
 $app->add(new ListCommand);
 $app->run();
 
