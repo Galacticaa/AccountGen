@@ -1,4 +1,4 @@
-<?php namespace AccountGen\Ptc;
+<?php namespace AccountGen\Accounts;
 
 use Exception;
 use Faker\Factory;

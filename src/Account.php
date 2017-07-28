@@ -1,4 +1,4 @@
-<?php namespace AccountGen\Ptc;
+<?php namespace AccountGen;
 
 use Illuminate\Database\Eloquent\Model;
 

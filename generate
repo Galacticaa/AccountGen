@@ -1,7 +1,7 @@
 #!/usr/bin/php
 <?php require 'vendor/autoload.php';
 
-use AccountGen\Ptc\Generator;
+use AccountGen\Accounts\Generator;
 use Illuminate\Database\Capsule\Manager as Capsule;
 
 $db = include 'config/database.php';

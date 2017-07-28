@@ -12,6 +12,6 @@ class Instance extends Model
 
     public function accounts()
     {
-        return $this->hasMany('AccountGen\Ptc\Account', 'instance', 'name');
+        return $this->hasMany('AccountGen\Account', 'instance', 'name');
     }
 }

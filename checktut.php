@@ -1,6 +1,6 @@
 <?php require 'vendor/autoload.php';
 
-use AccountGen\Ptc\Account;
+use AccountGen\Account;
 use Illuminate\Database\Capsule\Manager as Capsule;
 
 $config = include 'config/tutorial.php';
