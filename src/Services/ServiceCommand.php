@@ -58,7 +58,7 @@ class ServiceCommand extends Command
         }
 
         if ($service == 'ns') {
-            return [new Worker($output, $this->getOption('instance'))];
+            return [new Worker($output, $input->getOption('instance'))];
         }
 
         $class = "AccountGen\Services\\{$this->serviceMap[$service]}";

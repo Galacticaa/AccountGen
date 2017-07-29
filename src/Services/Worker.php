@@ -10,10 +10,6 @@ class Worker
 
     public function __construct($output, $instance = null)
     {
-        if (!$instance) {
-            throw new Exception("Support for handling all workers at once is not implemented.");
-        }
-
         $this->output = $output;
         $this->instance = $instance;
     }
@@ -58,6 +54,9 @@ class Worker
         if ($instance = $this->instance) {
             echo "Setting instance filter... ";
             $instance = ' | grep "'.$instance.'"';
+        } else {
+            echo "Finding all ns instances... ";
+            $instance = ' | grep -v scanner';
         }
 
         $cmd = "ps axf | grep runserver.py | grep -v grep | grep -v tmux{$instance} | awk '{ print \$1 }'";
