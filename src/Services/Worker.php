@@ -25,7 +25,8 @@ class Worker
             return;
         }
 
-        system("cd {$this->mapdir} && tmux new-session -s \"scan_{$instance}\" -d ./runserver.py -cf \"config/{$instance}.ini\"");
+        $i = strtolower($this->instance);
+        system("cd {$this->mapdir} && tmux new-session -s \"scan_{$i}\" -d ./runserver.py -cf \"config/{$i}.ini\"");
 
         $this->output->writeLn('Done!');
     }
@@ -54,12 +55,9 @@ class Worker
         if ($instance = $this->instance) {
             echo "Setting instance filter... ";
             $instance = ' | grep "'.$instance.'"';
-        } else {
-            echo "Finding all ns instances... ";
-            $instance = ' | grep -v scanner';
         }
 
-        $cmd = "ps axf | grep runserver.py | grep -v grep | grep -v tmux{$instance} | awk '{ print \$1 }'";
+        $cmd = "ps axf | grep 'runserver.py \-cf' | grep -v grep | grep -v tmux{$instance} | awk '{ print \$1 }'";
 
         exec($cmd, $pids);
 

@@ -48,7 +48,7 @@ class Server
 
     protected function getPids()
     {
-        $cmd = "ps axf | grep runserver.py | grep -v grep | grep -v tmux | grep -v '-cf' | awk '{ print \$1 }'";
+        $cmd = "ps axf | grep runserver.py | grep -v grep | grep -v tmux | grep -v '\-cf' | awk '{ print \$1 }'";
 
         exec($cmd, $pids);
 
