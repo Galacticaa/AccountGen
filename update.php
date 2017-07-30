@@ -13,7 +13,7 @@ $capsule->addConnection($db);
 $capsule->setAsGlobal();
 $capsule->bootEloquent();
 
-$restartInterval = (new DateTime())->modify('-10 minutes')->format('Y-m-d H:i:s');
+$restartInterval = (new DateTime())->modify('-30 minutes')->format('Y-m-d H:i:s');
 
 $instances = Instance::whereNull('last_restart')->orWhere('last_restart', '<', $restartInterval)->with('accounts')->get();
 
