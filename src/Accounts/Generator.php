@@ -1,6 +1,7 @@
 <?php namespace AccountGen\Accounts;
 
 use Exception;
+use AccountGen\Account;
 use Faker\Factory;
 
 class Generator
