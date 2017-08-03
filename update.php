@@ -45,6 +45,9 @@ foreach ($instances as $instance) {
     if ($complete === 0) {
         echo "Instance {$instance->name} has no accounts to write.".PHP_EOL.PHP_EOL;
         continue;
+    } elseif ($complete === 1) {
+        echo "Instance {$instance->name} needs more accounts. Only 1 complete.".PHP_EOL.PHP_EOL;
+        continue;
     } elseif ($complete == $instance->last_total) {
         echo "Not writing accounts for {$instance->name}, no change since last run.".PHP_EOL.PHP_EOL;
         continue;
