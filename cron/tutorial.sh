@@ -34,15 +34,18 @@ php checktut.php
 
 echo
 echo "Grabbing new tutorial accounts..."
-php tutorial.php
+accounts=$(php pogomap accounts:list tutorial)
 
 if [ $? -ne 0 ]; then
     echo "All accounts have completed tutorial!"
 else
+    cd "$ROCKET_PATH"
+    echo "Saving accounts to 'accounts/tutorial.csv'..."
+    echo "$accounts" > accounts/tutorial.csv
+
     echo "Starting RocketMap to complete tutorials..."
     echo
     echo
-    cd "$ROCKET_PATH"
 
     tmux new-session -s RMAPTUTORIAL -d ./runserver.py -cf config/tutorial.ini
 fi
