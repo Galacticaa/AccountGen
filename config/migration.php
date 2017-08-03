@@ -4,8 +4,8 @@ $config = include 'config/database.php';
 
 return [
     'paths' => [
-        'migrations' => 'AccountGen/Database/Migrations',
-        'seeds' => 'AccountGen/Database/Seeds',
+        'migrations' => 'src/Database/Migrations',
+        'seeds' => 'src/Database/Seeds',
     ],
     'environments' => [
         'default_migration_table' => 'migrations',
