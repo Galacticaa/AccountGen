@@ -10,13 +10,16 @@ class Generator
 
     protected $instance;
 
+    protected $batch;
+
     protected $symbols = ['?', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', ']', '<', '>'];
 
-    public function __construct($instance = null)
+    public function __construct($instance = null, $batch = null)
     {
         $this->faker = Factory::create();
 
         $this->instance = $instance;
+        $this->batch = $batch;
     }
 
     public function generateOne(string $basename = null)
@@ -26,6 +29,7 @@ class Generator
         $account->password = $this->password();
         $account->birthday = $this->birthday();
         $account->instance = $this->instance;
+        $account->batch = $this->batch;
 
         $account->save();
 

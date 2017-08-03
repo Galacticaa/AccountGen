@@ -16,7 +16,7 @@ class Worker
 
     public function start()
     {
-        $this->output->write("Starting RocketMap server... ");
+        $this->output->write("Starting RocketMap instance... ");
 
         $pids = $this->getPids();
 
@@ -33,7 +33,7 @@ class Worker
 
     public function stop()
     {
-        $this->output->write("Stopping RocketMap server... ");
+        $this->output->write("Stopping RocketMap instance... ");
 
         $pids = $this->getPids();
 
@@ -53,7 +53,6 @@ class Worker
     protected function getPids()
     {
         if ($instance = $this->instance) {
-            echo "Setting instance filter... ";
             $instance = ' | grep "'.$instance.'"';
         }
 

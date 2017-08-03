@@ -24,10 +24,15 @@ if ($instances->isEmpty()) {
 $output = [];
 
 foreach ($instances as $instance) {
-    $incomplete = 0;
+    $incomplete = $old = 0;
     $accounts = [];
 
     foreach ($instance->accounts as $account) {
+        if ($account->batch != $instance->current_batch) {
+            $old++;
+            continue;
+        }
+
         if (null === $account->completed_at) {
             $incomplete++;
             continue;
@@ -38,8 +43,8 @@ foreach ($instances as $instance) {
 
     $complete = count($accounts);
 
-    echo sprintf("Instance '%s' has %s prepared accounts, and %s incomplete.",
-        $instance->name, $complete, $incomplete
+    echo sprintf("Instance '%s' has %s prepared accounts, %s incomplete and %s old.",
+        $instance->name, $complete, $incomplete, $old
     ).PHP_EOL;
 
     if ($complete === 0) {

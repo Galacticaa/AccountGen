@@ -15,6 +15,7 @@ class GenerateCommand extends Command
         $this->setDescription("Add a new batch of accounts to an instance's account pools");
 
         $this->addArgument('instance', InputArgument::OPTIONAL, "Set the instance to apply accounts to");
+        $this->addOption('batch', null, InputOption::VALUE_REQUIRED, "Batch number to which accounts will be assigned");
 
         $this->addOption('unique', 'u', InputOption::VALUE_REQUIRED, "How many base names to generate");
         $this->addOption('multiples', 'm', InputOption::VALUE_REQUIRED, "Number of accounts per base name");
@@ -54,7 +55,7 @@ class GenerateCommand extends Command
 
         $output->writeLn("#username;email;password;dob;country");
 
-        $factory = new Generator($instance);
+        $factory = new Generator($instance, $input->getOption('batch'));
 
         for ($i = 0; $i < $unique; $i++) {
             $count = (($i + 1) * $multiples) < $max
