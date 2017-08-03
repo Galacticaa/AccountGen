@@ -60,7 +60,7 @@ foreach ($instances as $instance) {
 
     file_put_contents($acct_path.'/'.$file, implode("\n", $accounts));
 
-    system('/bin/bash restart.sh "'.$rmap_path.'" '.strtolower($instance->name));
+    system('/bin/bash restart.sh '.strtolower($instance->name));
 
     $instance->last_total = $complete;
     $instance->last_restart = date('Y-m-d H:i:s');
