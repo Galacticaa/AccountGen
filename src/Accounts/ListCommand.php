@@ -24,7 +24,7 @@ class ListCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $mode = $input->getArgument('mode');
-        $format = 'formatFor'.($mode == 'creation' ? 'RocketMap' : 'Kinan');
+        $format = 'formatFor'.($mode == 'creation' ? 'Kinan' : 'RocketMap');
 
         if (!in_array($mode, $this->modes)) {
             $output->writeLn("Invalid list mode '{$mode}'.");
@@ -52,13 +52,13 @@ class ListCommand extends Command
 
     protected function getCreationAccounts($input, $output)
     {
+        $output->writeLn("#username;email;password;dob;country");
+
         return Account::whereNull('registered_at')->get();
     }
 
     protected function getTutorialAccounts($input, $output)
     {
-        $output->writeLn("#username;email;password;dob;country");
-
         return Account::whereNotNull('registered_at')
                       ->whereNotNull('activated_at')
                       ->whereNull('completed_at')->get();
