@@ -79,7 +79,7 @@ class Generator
     public function password()
     {
         $symbols = [];
-        while (0 < count(array_intersect($this->symbols, $symbols))) {
+        while (0 === count(array_intersect($this->symbols, $symbols))) {
             $symbols = $this->faker->randomElements($this->symbols, $this->faker->numberBetween(2, 4));
         }
 
