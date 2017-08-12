@@ -78,7 +78,11 @@ class Generator
 
     public function password()
     {
-        $symbols = $this->faker->randomElements($this->symbols, $this->faker->numberBetween(1, 4));
+        $symbols = [];
+        while (0 < count(array_intersect($this->symbols, $symbols))) {
+            $symbols = $this->faker->randomElements($this->symbols, $this->faker->numberBetween(2, 4));
+        }
+
         $alphanum = strtoupper($this->faker->bothify('???###'));
         $combined = str_pad($alphanum.implode('', $symbols), 12, '?');
 
