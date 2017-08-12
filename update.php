@@ -33,7 +33,9 @@ foreach ($instances as $instance) {
             continue;
         }
 
-        if (null === $account->completed_at) {
+        $complete_key = $config['use_tutorial'] ? 'completed_at' : 'activated_at';
+
+        if (null === $account->$complete_key) {
             $incomplete++;
             continue;
         }
