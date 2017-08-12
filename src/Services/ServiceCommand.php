@@ -1,6 +1,7 @@
 <?php namespace AccountGen\Services;
 
 use Kinan;
+use AccountGen\Instance;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -58,7 +59,19 @@ class ServiceCommand extends Command
         }
 
         if ($service == 'ns') {
-            return [new Worker($output, $input->getOption('instance'))];
+            $instance = $input->getOption('instance');
+            $classes = [];
+
+            if ($instance != 'all') {
+                $classes[] = new Worker($output, $instance);
+            } else {
+                foreach (Instance::all() as $i) {
+                    echo "RESTARTING {$i->name}!".PHP_EOL;
+                    $classes[] = new Worker($output, $i->name);
+                }
+            }
+
+            return $classes;
         }
 
         $class = "AccountGen\Services\\{$this->serviceMap[$service]}";
