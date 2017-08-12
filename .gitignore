@@ -3,6 +3,8 @@ config/database.php
 config/domains.php
 config/instances.php
 config/tutorial.php
+cron/*.log
 Kinan/config.properties
+Kinan/dump
 Kinan/*.csv
 Kinan/*.log
