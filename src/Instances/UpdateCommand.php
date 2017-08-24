@@ -84,8 +84,9 @@ class UpdateCommand extends Command
         if (!$force) {
             $interval = (new DateTime())->modify('-30 minutes')->format('Y-m-d H:i:s');
 
-            $instances = $instances->whereNull('last_restart')
-                                    ->orWhere('last_restart', '<', $interval);
+            $instances = $instances->where(function($q) use ($interval) {
+                $q->whereNull('last_restart')->orWhere('last_restart', '<', $interval);
+            });
         }
 
         return $instances->with('accounts')->get();
