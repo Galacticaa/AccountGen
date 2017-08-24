@@ -55,7 +55,7 @@ class Worker
 
     protected function getPids()
     {
-        if ($instance = $this->instance) {
+        if ($instance = strtolower($this->instance)) {
             $instance = ' | grep "'.$instance.'"';
         }
 
