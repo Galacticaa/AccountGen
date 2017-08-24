@@ -4,6 +4,7 @@
 use AccountGen\Accounts\GenerateCommand;
 use AccountGen\Accounts\ListCommand;
 use AccountGen\Instances\RegenCommand;
+use AccountGen\Instances\UpdateCommand;
 use AccountGen\Services\ServiceCommand;
 use Illuminate\Database\Capsule\Manager as Capsule;
 use Symfony\Component\Console\Application;
@@ -20,6 +21,7 @@ $app = new Application();
 $app->add(new GenerateCommand);
 $app->add(new ListCommand);
 $app->add(new RegenCommand);
+$app->add(new UpdateCommand);
 $app->add(new ServiceCommand);
 $app->run();
 

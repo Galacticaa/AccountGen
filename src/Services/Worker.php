@@ -12,11 +12,14 @@ class Worker
     {
         $this->output = $output;
         $this->instance = $instance;
+
+        $config = @include 'config/tutorial.php';
+        $this->mapdir = $config['map_path'];
     }
 
     public function start()
     {
-        $this->output->write("Starting RocketMap instance... ");
+        $this->output->write("Starting RocketMap instance {$this->instance}... ");
 
         $pids = $this->getPids();
 
@@ -33,7 +36,7 @@ class Worker
 
     public function stop()
     {
-        $this->output->write("Stopping RocketMap instance... ");
+        $this->output->write("Stopping RocketMap instance {$this->instance}... ");
 
         $pids = $this->getPids();
 
